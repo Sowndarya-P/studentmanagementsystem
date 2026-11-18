@@ -59,21 +59,31 @@ public class StudentController {
 		}
 		}
 	
-	public void ViewStudent() {
+public void ViewStudent() {
 		
-		public List<Student> service.findAll(){
-			if(true) {
-				List<Student> Student;
-				return Student;
+		List<Student> student= service.findAll();
+			if(student.isEmpty()) {
+				System.out.println("No data");
 			}
 			else {
-				System.out.println(" No Student dada added");
+				for (Student students : student) {
+				System.out.println(students);
 			}
 		}
+	}
 		
 	public void SearchStudent() {
-		
+		System.out.println("Enter Id?");
+		int id=ref.nextInt();
+		Student student = service.findById(id);
+		if(student !=  null) {
+			System.out.println(student);
+		}
+		else {
+			System.out.println("No Id Found");
+			
 	}
 	}
 }
+
 
