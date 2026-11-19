@@ -1,29 +1,38 @@
 package com.sms.repository;
 import java.util.ArrayList;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.List;
 import com.sms.model.*;
+import com.sms.util.DBConnection;
 public class StudentRepository {
-	private List<Student> students = new ArrayList<>();
 	
-	public Boolean add(Student student) {
-		students.add(student);
-		return true;
-	}
 	
-	public List<Student> findAll(){
-		return students;
-	}
-	
-	public Student findById(int id) {
+	public boolean addStudent(Student student) {
 		
-		for(Student student : students) {
+		
+		String sql = "INSERT INTO student VALUES(?, ?, ?, ?, ?)";
+		try(Connection con = DBConnection.getConnection();
+			PreparedStatement ps = con.prepareStatement(sql)){
+			ps.setInt(1,student.getId());
+			ps.setString(2,student.getName());
+			ps.setString(3,student.getDepartment());
+			ps.setString(4,student.getEmail());
+			ps.setLong(4,student.getPhoneno());
 			
-			if(student.getId() == id) {
-				return student;
-			}
+			ps.executeUpdate();
+			System.out.print("Student Added Successfully");
+			
 		}
-		return null;
+		catch (SQLException e) {
+			e.printStackTrace();
+			}
+		return false;
+		
 	}
+	
+
 
 	
 }
