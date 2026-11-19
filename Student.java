@@ -7,7 +7,7 @@ public class Student {
 	private String Email;
 	private long Phoneno;
 	
-	Student(int StudentId,String StudentName,String Department,String Email,long Phoneno){
+	public Student(int StudentId,String StudentName,String Department,String Email,long Phoneno){
 		this.StudentId=StudentId;
 		this.StudentName=StudentName;
 		this.Department=Department;
@@ -30,6 +30,14 @@ public class Student {
 	
 	public void setId(String StudentName) {
 		this.StudentName=StudentName;
+	}
+	
+	public String getDepartment() {
+		return Department;
+	}
+	
+	public void setDepartment(String Department) {
+		this.Department=Department;
 	}
 	
 	public String getEmail() {
